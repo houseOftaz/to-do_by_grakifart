@@ -5,12 +5,13 @@ import { createElement } from "./functions/dom.js";
 try {
   const todos = await fetchJSON("https://jsonplaceholder.typicode.com/todos");
   const list = new TodoList(todos);
-  list.appendToDOM(document.querySelector("#todolist"));
+  list.appendTo(document.querySelector("#todolist"));
 } catch (e) {
   const alertElement = createElement("div", {
     class: "alert alert-danger m-2",
     role: "alert",
   });
-  alertElement.innerText = "Can't load elements";
+  alertElement.innerText = "Impossible de récupérer les tâches";
   document.body.prepend(alertElement);
+  console.error(e);
 }
